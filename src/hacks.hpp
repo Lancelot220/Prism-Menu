@@ -419,6 +419,7 @@ class Hacks {
                 }
 #endif
             } else {
+#ifndef GEODE_IS_IOS
                 auto res = Mod::get()->patch(
                     reinterpret_cast<void*>(base::get() + std::stoul(addrStr, nullptr, 16)),
                     bytes
@@ -429,6 +430,7 @@ class Hacks {
                     res.unwrap()->setAutoEnable(false);
                     log::info("[{}] Patch {} with addr {}", ((isEnabled) ? "+" : "-"), name, addrStr);
                 }
+#endif
             }
         }
     }
@@ -468,7 +470,6 @@ class Hacks {
         }
     }
     static void setPitch(float pitch) {
-#if !defined(GEODE_IS_MACOS) && !defined(GEODE_IS_IOS) // TODO: figure out why it turns to creepypasta when tuning down speedhack
         if (!Hacks::isHackEnabled("Speedhack Audio")) {
             pitch = 1.0F;
         }
@@ -485,7 +486,6 @@ class Hacks {
         fmod->m_globalChannel->setPitch(pitch);
         #endif
         //fmod->pitchForIdx()
-#endif
     }
 };
 #endif

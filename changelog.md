@@ -1,3 +1,38 @@
+# v1.10.6
+    - Bump geode version
+# v1.10.4
+    - Added Uncomplete Level for all platforms
+# v1.10.3
+    - Added Jump Hack on Mac OS
+    - Allowed speedhack audio on Mac OS
+    - Added Sapphire SDK support
+# v1.10.2
+    - Fixed uncomplete level from removing secret coins
+# v1.10.1
+    - Changed language name for selecting Arabic to be "al-Arabia"
+    - Updated Arabic Translations
+    - Fixed mods that use getModifiedDelta to work unless you change the TPS for Prism yourself (xdBot as an example)
+    - Reworked Safe Mode (for Eclipse Menu compatibility)
+# v1.10.0
+    - Updated to Geode 4.1.2
+    - Added Arabic Translations
+    - Updated French Translations
+    - Updated Russian Translations
+    - Updated Romanian Translations
+    - Updated Turkish Translations
+    - Updated Vietnamese Translations
+    - Updated Ukrainian Translations
+    - Added Hitbox Trail
+    - Added Dragging the Prism Button
+    - Added Menu Transition
+    - Added Show Tooltip to work properly with info buttons
+    - Added information for whether or not Quartz Macros have frame fix enabled or not 
+    - Added a confirmation for resetting settings to default
+    - Added "Export as JSON" for Macros
+    - Added Everything Hurts back
+    - Added No Solids back
+    - Fixed TPS Bypass for Android
+    - Optimized some hacks
 # v1.9.3 
     - Updated to Geode 4.0.0-beta.1
     - Updated Ukrainian Translations

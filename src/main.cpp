@@ -147,6 +147,7 @@ $on_mod(Loaded) {
 }
 
 // remove when custom keybinds is fixed
+#ifndef GEODE_IS_IOS
 #include <Geode/modify/CCKeyboardDispatcher.hpp>
 class $modify(CCKeyboardDispatcher) {
     bool dispatchKeyboardMSG(enumKeyCodes key, bool down, bool arr) {
@@ -190,7 +191,7 @@ class $modify(CCKeyboardDispatcher) {
         return CCKeyboardDispatcher::dispatchKeyboardMSG(key, down, arr);
     }
 };
-
+#endif
 // sorry, not sorry. for some reason the allHacks vector isnt being initialized in the other .cpp file
 // i completely wasted my time writing this whole patch script, and i kinda want android + mac support soooo
 
@@ -283,7 +284,6 @@ class $modify(PrismPlayLayer, PlayLayer) {
 
     // Anticheat Bypass, Noclip, No Spikes, No Solids
     void destroyPlayer(PlayerObject *p0, GameObject *p1) {
-        bool instaRestart = Hacks::isHackEnabled("Instant Respawn");
         if (!m_fields->initedDeath) {
             #if !defined(GEODE_IS_ANDROID64) && !defined(GEODE_IS_MACOS) && !defined(GEODE_IS_IOS)
             if (m_fields->antiCheatObject == nullptr && p1 != nullptr && (
@@ -315,11 +315,21 @@ class $modify(PrismPlayLayer, PlayLayer) {
                 m_fields->initedDeath = true;*/
             #endif
         }
+        if (p1 == m_fields->antiCheatObject) { // nice AC robert
+            return PlayLayer::destroyPlayer(p0, p1);
+        }
         //bool m_isTestMode = *reinterpret_cast<bool*>(reinterpret_cast<uintptr_t>(this) + 0x413);
+        auto destroyLePlayer = [this,p0,p1]() {
+            if (Hacks::isHackEnabled("Safe Mode") || Hacks::isAutoSafeModeActive()) {
+                PlayLayer::resetLevel();
+            } else {
+                PlayLayer::destroyPlayer(p0, p1);
+                if (Hacks::isHackEnabled("Instant Respawn")) PlayLayer::delayedResetLevel();
+            }
+        };
         bool noclipDisabled = !Hacks::isHackEnabled("No Solids") && !Hacks::isHackEnabled("No Spikes") && !Hacks::isHackEnabled("Noclip");
         if (noclipDisabled) {
-            PlayLayer::destroyPlayer(p0, p1);
-            if (instaRestart) PlayLayer::delayedResetLevel();
+            destroyLePlayer();
             return;
         }
         if (
@@ -328,19 +338,14 @@ class $modify(PrismPlayLayer, PlayLayer) {
             p1 != nullptr &&
             p1->m_objectType != GameObjectType::CollisionObject
         ) {
-            PlayLayer::destroyPlayer(p0, p1);
-            if (instaRestart) PlayLayer::delayedResetLevel();
+            destroyLePlayer();
         }
         if (
             !Hacks::isHackEnabled("Noclip") &&
             Hacks::isHackEnabled("No Spikes") &&
             (p1 == nullptr || p1->m_objectType == GameObjectType::CollisionObject)
         ) {
-            PlayLayer::destroyPlayer(p0, p1);
-            if (instaRestart) PlayLayer::delayedResetLevel();
-        }
-        if (p1 == m_fields->antiCheatObject) { // nice AC robert
-            return PlayLayer::destroyPlayer(p0, p1);
+            destroyLePlayer();
         }
         if (p1 != m_fields->antiCheatObject) {
             if (Hacks::isHackEnabled("Suicide")) return PlayLayer::destroyPlayer(p0, p1);
@@ -455,7 +460,7 @@ class $modify(PrismPlayLayer, PlayLayer) {
                 m_fields->flashNode->setOpacity(m_fields->flashOpacity);
             }
         }
-        if (!m_fields->hasSetTestMode) {
+        /*if (!m_fields->hasSetTestMode) {
             m_fields->hasSetTestMode = true;
             m_fields->previousTestMode = m_isTestMode;
         }
@@ -466,6 +471,7 @@ class $modify(PrismPlayLayer, PlayLayer) {
                 m_isTestMode = m_fields->previousTestMode;
             }
         }
+        */
         // whats the difference between m_fields and not using? i have no idea!
         if (Hacks::isCheating()) { // cheating
             if (!m_fields->isCheating) {

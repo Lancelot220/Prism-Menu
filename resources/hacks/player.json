@@ -24,6 +24,11 @@
         "type": "bool"
     },
     {
+        "name": "Everything Hurts",
+        "desc": "Owie.",
+        "type": "bool"
+    },
+    {
         "name": "Suicide",
         "desc": "Kills the player repeatedly.",
         "type": "bool"
@@ -46,8 +51,7 @@
     {
         "name": "Jump Hack",
         "desc": "Allows for jumping in mid-air.",
-        "type": "bool",
-        "platforms": ["win", "android64", "android32"]
+        "type": "bool"
     },
     {
         "name": "Instant Complete",
@@ -68,6 +72,11 @@
     {
         "name": "No Trail",
         "desc": "Disables any trail effect from the player.",
+        "type": "bool"
+    },
+    {
+        "name": "Always Show Trail",
+        "desc": "Always shows the trail behind the player.",
         "type": "bool"
     },
     {

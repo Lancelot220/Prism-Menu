@@ -57,7 +57,6 @@ Press on the circle button located on the left corner, or press `Tab` to open th
 * MegaSa1nt - Translations for Russian
 * savvacorgi - Translations for Russian
 * [Gazonk](https://www.youtube.com/channel/UCgp5Tql2b6Y1Xcni82pPxmA) - Translations for Brazilian Portuguese
-* [huhnmitferrari](https://discordapp.com/users/1043189307302752256) - Translations for German
 * [Ignis](https://twitter.com/IgnisPeaks0) - Translations for Czech
 * [RzaIX](https://twitter.com/RzaIX_) - Translations for Indonesian
 * KONDIROTSU - Translations for Polish
@@ -66,7 +65,11 @@ Press on the circle button located on the left corner, or press `Tab` to open th
 * hori - Translations for Malay
 * slideglide - Translations for Turkish
 * DarkKing - Proofreading for Turkish
-* [BinZ FAKE](https://youtube.com/@tienanh_90) - Translations for Vietnamese
+* [tienanh109](https://youtube.com/@tienanh_90) - Translations for Vietnamese
+* [Lancelot220](https://github.com/Lancelot220) - Translations for Ukrainian
+* [HiimandrewYT](https://youtube.com/@MyNamesAndrew) - Translations for Romanian 
+* Adamorocco - Translations for Arabic
+* [AprilWaterfalls](https://x.com/aprilwaterfalls) - Translations for Italian
 * **All contributors that helped with Prism Menu!**
 
 # Libraries
